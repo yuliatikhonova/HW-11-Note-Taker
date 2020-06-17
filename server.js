@@ -30,7 +30,19 @@ app.get("/api/notes", (req, res) => {
 });
 
 //post the data
-
+app.post("/api/notes", (req, res) => {
+    fs.readFile(path.join(__dirname, "db", "db.json"), 'utf8', (err, jsonString) => {
+        if (err) {
+           return console.log("No go:", err)  
+        }
+       
+        fs.writeFile(path.join(__dirname, "db", "db.json"), _________, (err) => {
+            if (err) {return console.log(err);}
+            console.log("Success!");
+        });
+    })
+});
 
 
 app.listen(port, () => console.log(`Its listening to port ${port}!`));
+
