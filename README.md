@@ -31,7 +31,7 @@
 
 ## Usage
 
-   When you type in node server.js into the terminal and go to the deployed site.  
+   Go to the deployed site https://limitless-chamber-29052.herokuapp.com/ 
 
 ## License
   Licenses used in this project:
