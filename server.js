@@ -43,7 +43,7 @@ app.post("/api/notes", (req, res) => {
         newNote.id = id;
         notesList.push(newNote);
         const notesString = JSON.stringify(notesList);
-    
+
         fs.writeFile(path.join(__dirname, "db/db.json"), notesString, (err) => {
             if (err) { return console.log(err); }
             console.log("Success!");
@@ -51,6 +51,22 @@ app.post("/api/notes", (req, res) => {
     })
 });
 
+app.delete("/api/notes/:id", function (req, res) {
+    fs.readFile(path.join(__dirname, "db/db.json"), (err, jsonString) => {
+        if (err) {
+            return console.log("No go:", err);
+        }
+        const notesList = (JSON.parse(jsonString));
+        const newNotesList = [];
+        for (i = 0; i < notesList.length; i++) {
+            if (notesList[i].id != req.params.id) {
+                newNotesList.push(notesList[i]);
+            };
+        };
+        const notesString = JSON.stringify(newNotesList);
+        fs.writeFileSync(path.join(__dirname, "db/db.json"), notesString);
+    })
+});
 
 app.listen(PORT, () => console.log(`Its listening to port ${PORT}!`));
 
